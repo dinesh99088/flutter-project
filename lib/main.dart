@@ -1,163 +1,109 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_samples/animations/main_animations.dart';
-import 'package:flutter_samples/app_clone/main_apps_clone.dart';
-import 'package:flutter_samples/appbar_sliverappbar/main_appbar_sliverappbar.dart';
-import 'package:flutter_samples/collapsing_toolbar/main_collapsing_toolbar.dart';
-import 'package:flutter_samples/communication_widgets/main_communication_widgets.dart';
-import 'package:flutter_samples/fetch_data/main_fetch_data.dart';
-import 'package:flutter_samples/hero_animations/main_hero_animations.dart';
-import 'package:flutter_samples/menu_navigations/main_menu_navigations.dart';
-import 'package:flutter_samples/persistent_tabbar/main_persistent_tabbar.dart';
-import 'package:flutter_samples/scroll_controller/main_scroll_controller.dart';
-import 'package:flutter_samples/size_and_position/main_size_and_position.dart';
-import 'package:flutter_samples/split_image/main_split_image.dart';
 
-void main() => runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyApp(),
-    ));
+void main() => runApp(new MyApp());
 
-class MyApp extends StatefulWidget {
-  @override
-  MyAppState createState() {
-    return MyAppState();
-  }
-}
-
-class MyAppState extends State<MyApp> {
-  onButtonTap(Widget page) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (BuildContext context) => page));
-  }
-
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Flutter Samples"),
+    return new MaterialApp(
+      title: 'Flutter Demo',
+      theme: new ThemeData(
+        // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
+        // counter didn't reset back to zero; the application is not restarted.
+        primarySwatch: Colors.red,
       ),
-      body: Padding(
-        padding: EdgeInsets.all(15.0),
-        child: ListView(
-          children: <Widget>[
-            MyMenuButton(
-              title: "Fetch Data JSON",
-              actionTap: () {
-                onButtonTap(
-                  MainFetchData(),
-                );
-              },
-            ),
-            MyMenuButton(
-                title: "Persistent Tab Bar",
-                actionTap: () {
-                  onButtonTap(
-                    MainPersistentTabBar(),
-                  );
-                }),
-            MyMenuButton(
-              title: "Collapsing Toolbar",
-              actionTap: () {
-                onButtonTap(
-                  MainCollapsingToolbar(),
-                );
-              },
-            ),
-            MyMenuButton(
-              title: "Hero Animations",
-              actionTap: () {
-                onButtonTap(
-                  MainHeroAnimationsPage(),
-                );
-              },
-            ),
-            MyMenuButton(
-              title: "Size and Positions",
-              actionTap: () {
-                onButtonTap(
-                  MainSizeAndPosition(),
-                );
-              },
-            ),
-            MyMenuButton(
-              title: "ScrollController and ScrollNotification",
-              actionTap: () {
-                onButtonTap(
-                  MainScrollController(),
-                );
-              },
-            ),
-            MyMenuButton(
-              title: "Apps Clone",
-              actionTap: () {
-                onButtonTap(
-                  MainAppsClone(),
-                );
-              },
-            ),
-            MyMenuButton(
-              title: "Animations",
-              actionTap: () {
-                onButtonTap(
-                  MainAnimations(),
-                );
-              },
-            ),
-            MyMenuButton(
-              title: "Communication Widgets",
-              actionTap: () {
-                onButtonTap(
-                  MainCommunicationWidgets(),
-                );
-              },
-            ),
-            MyMenuButton(
-              title: "Split Image",
-              actionTap: () {
-                onButtonTap(MainSplitImage());
-              },
-            ),
-            MyMenuButton(
-              title: "Custom AppBar & SliverAppBar",
-              actionTap: () {
-                onButtonTap(MainAppBarSliverAppBar());
-              },
-            ),
-            MyMenuButton(
-              title: "Menu Navigations",
-              actionTap: () {
-                onButtonTap(MainMenuNavigations());
-              },
-            ),
-          ],
-        ),
-      ),
+      home: new MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyMenuButton extends StatelessWidget {
-  final String? title;
-  final VoidCallback? actionTap;
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
 
-  MyMenuButton({this.title, this.actionTap});
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => new _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: MaterialButton(
-        height: 50.0,
-        color: Theme.of(context).primaryColor,
-        textColor: Colors.white,
-        child: new Text(title!),
-        onPressed: actionTap,
+    // This method is rerun every time setState is called, for instance as done
+    // by the _incrementCounter method above.
+    //
+    // The Flutter framework has been optimized to make rerunning build methods
+    // fast, so that you can just rebuild anything that needs updating rather
+    // than having to individually change instances of widgets.
+    return new Scaffold(
+      appBar: new AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: new Text(widget.title),
       ),
+      body: new Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
+        child: new Column(
+          // Column is also layout widget. It takes a list of children and
+          // arranges them vertically. By default, it sizes itself to fit its
+          // children horizontally, and tries to be as tall as its parent.
+          //
+          // Invoke "debug paint" (press "p" in the console where you ran
+          // "flutter run", or select "Toggle Debug Paint" from the Flutter tool
+          // window in IntelliJ) to see the wireframe for each widget.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Text(
+              'You have pushed the button this many times:',
+            ),
+            new Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.display1,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: new Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
