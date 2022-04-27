@@ -56,9 +56,9 @@ jobs:
     #     path: build/app/outputs/apk/release/app-release.apk
     
     - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       
       # Fail the workflow if Qualit Gate status fails
     - uses: sonarsource/sonarqube-quality-gate-action@master
