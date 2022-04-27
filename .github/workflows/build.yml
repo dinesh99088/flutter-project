@@ -55,5 +55,13 @@ jobs:
     #     name: release-apk
     #     path: build/app/outputs/apk/release/app-release.apk
     
-    - name: Run the analysis and publish to the SonarQube server
-      run: sonar-scanner
+    - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      
+      # Fail the workflow if Qualit Gate status fails
+    - uses: sonarsource/sonarqube-quality-gate-action@master
+      timeout-minutes: 5
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
