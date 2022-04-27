@@ -1,7 +1,4 @@
-# hello_world
+# flutter_github_action
 
-A new Hello World Flutter project.
-
-## Demo
-
-![](/screenshots/demo.png)
+This projects is for showcasing how you can use GitHub actions to both
+build and test your code.
